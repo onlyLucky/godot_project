@@ -1,6 +1,11 @@
 class_name Player
 extends CharacterBody2D
 
+enum Direction {
+	LEFT = -1,
+	RIGHT = +1,
+}
+
 # Player 状态动画
 enum State {
 	IDLE,#站立
@@ -43,9 +48,20 @@ const KNOCBACK_AMOUNT := 512.0
 const SLIDING_DURATION := 0.3
 # 滑铲 loop 速度
 const SLIDING_SPEED := 256.0
+# 多高算着陆
+const LANDING_HEIGHT:=100.0
+# 一次滑铲消耗多少能量
+const SLIDING_ENERGY := 4.0
 
 #是否连击
 @export var can_combo := false
+#玩家朝向
+@export var direction := Direction.RIGHT:
+	set(v):
+		direction = v
+		if not is_node_ready():
+			await ready
+		graphics.scale.x = direction
 
 # 获取默认加速度
 var default_gravity := ProjectSettings.get("physics/2d/default_gravity") as float
@@ -55,6 +71,10 @@ var is_first_tick := false
 var is_combo_requested := false
 # 待处理的伤害对象 应该为数组
 var pending_damage: Damage
+# 玩家是从多高跳下来的
+var fall_from_y: float
+# 当前正在与场景中哪个物品交互
+var interacting_with: Array[Interactable]
 
 @onready var graphics: Node2D = $Graphics
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
@@ -63,8 +83,10 @@ var pending_damage: Damage
 @onready var hand_checker: RayCast2D = $Graphics/HandChecker
 @onready var foot_checker: RayCast2D = $Graphics/FootChecker
 @onready var state_machine: StateMachine = $StateMachine
-@onready var stats: Stats = $Stats
+@onready var stats: Node = Game.player_stats
 @onready var invincible_timer: Timer = $InvincibleTimer
+@onready var slide_request_timer: Timer = $SlideRequestTimer
+@onready var interaction_icon: AnimatedSprite2D = $InteractionIcon
 
 
 # 判断当前输入时间
@@ -79,9 +101,19 @@ func _unhandled_input(event: InputEvent) -> void:
 	# 判断是否为攻击键
 	if event.is_action_pressed("attack") and can_combo:
 		is_combo_requested = true
+	
+	# 判断是否为滑铲键
+	if event.is_action_pressed("slide"):
+		slide_request_timer.start()
 		
+	if event.is_action_pressed("interact") and interacting_with:
+		# back获取最后元素
+		interacting_with.back().interact()
 
 func tick_physics(state: State, delta: float) -> void:
+	# 当前是否为角色交互
+	interaction_icon.visible = not interacting_with.is_empty()
+	
 	# 无敌2s 更改透明度 一闪一闪
 	if invincible_timer.time_left>0:
 		# 随机产生0-1
@@ -110,13 +142,13 @@ func tick_physics(state: State, delta: float) -> void:
 		State.WALL_SLIDING:
 			move(default_gravity / 3,delta)
 			# 设置滑墙方向 get_wall_normal 获得最近墙体的法线 -1 +1
-			graphics.scale.x = get_wall_normal().x
+			direction = Direction.LEFT if get_wall_normal().x < 0 else Direction.RIGHT
 		
 		State.WALL_JUMP:
 			# 判断当前持续时间小于0.1 站立， 翻转
 			if state_machine.state_time < 0.1:
 				stand(0.0 if is_first_tick else default_gravity,delta)
-				graphics.scale.x = get_wall_normal().x
+				direction = Direction.LEFT if get_wall_normal().x < 0 else Direction.RIGHT
 			else:
 				# 开始蹬墙跳 这里肯定不是第一帧就不用去除第一帧重力对起跳高度影响
 				move(default_gravity,delta)
@@ -140,16 +172,16 @@ func tick_physics(state: State, delta: float) -> void:
 
 func move(gravity: float, delta: float)-> void:
 	# 左右位移
-	var direction := Input.get_axis("move_left","move_right") # 1， -1
+	var movement := Input.get_axis("move_left","move_right") # 1， -1
 	var acceleration := FLOOR_ACCELERATION if is_on_floor() else AIR_ACCELERATION
 	# move_toward 添加速度过渡 from to delta(速度变化量 = 加速度*时间)
-	velocity.x = move_toward(velocity.x, direction * RUN_SPEED, acceleration * delta) #
+	velocity.x = move_toward(velocity.x, movement * RUN_SPEED, acceleration * delta) #
 	velocity.y += gravity * delta
 	
 	# 角色翻转
-	if not is_zero_approx(direction):
-		#sprite_2d.flip_h = direction<0
-		graphics.scale.x = -1 if direction < 0 else +1
+	if not is_zero_approx(movement):
+		#sprite_2d.flip_h = movement<0
+		direction = Direction.LEFT if movement < 0 else Direction.RIGHT
 		
 	# 开始移动
 	move_and_slide()
@@ -177,13 +209,29 @@ func die() -> void:
 	# 重新调用当前场景
 	get_tree().reload_current_scene()
 
+# 注册可交互对象
+func register_interactable(v: Interactable) -> void:
+	# 死亡状态不接受任何交互
+	if state_machine.current_state == State.DYING:
+		return
+	if v in interacting_with:
+		return
+	interacting_with.append(v)
+
+#注销可交互对象
+func unregister_interactable(v: Interactable) -> void:
+	interacting_with.erase(v)
+
+	
 # 是否滑墙下落
 func can_wall_slide() -> bool:
 	return is_on_wall() and hand_checker.is_colliding() and foot_checker.is_colliding()
 
 # 是否可以滑铲
 func should_slide() -> bool:
-	if not Input.is_action_just_pressed("slide"):
+	if slide_request_timer.is_stopped():
+		return false
+	if stats.energy < SLIDING_ENERGY:
 		return false
 	# 当前player 脚部没有碰到墙体
 	return not foot_checker.is_colliding()
@@ -211,9 +259,9 @@ func get_next_state(state: State) -> int:
 		return State.FALL
 	
 	# 是否左右位移
-	var direction := Input.get_axis("move_left","move_right")
+	var movement := Input.get_axis("move_left","move_right")
 	# 是否站立不动的
-	var is_still := is_zero_approx(direction) and is_zero_approx(velocity.x)
+	var is_still := is_zero_approx(movement) and is_zero_approx(velocity.x)
 	match state:
 		State.IDLE:
 			# 判断当前是否点击攻击
@@ -241,16 +289,14 @@ func get_next_state(state: State) -> int:
 			
 		State.FALL:
 			if is_on_floor():
+				var height := global_position.y -fall_from_y
 				# 下落只有当前站立不左右移动 State.LANDING 否则播放 runing
-				return State.LANDING if is_still else State.RUNNING
+				return State.LANDING if height>=LANDING_HEIGHT else State.RUNNING
 			# 检测是否与墙体碰撞 检测手部脚部碰撞检测
 			if can_wall_slide():
 				return State.WALL_SLIDING
 		
 		State.LANDING:
-			#去除着陆到跑步的 动作硬直
-			if not is_still:
-				return State.RUNNING
 			# 判断当前着陆动画是否播放完成
 			if not animation_player.is_playing():
 				return State.IDLE if is_still else State.RUNNING
@@ -309,11 +355,11 @@ func get_next_state(state: State) -> int:
 
 # 根据改变状态 播放相应的状态动画
 func transition_state(from: State, to: State) -> void:
-	print("[%s] %s => %s" %[
-		Engine.get_physics_frames(),
-		State.keys()[from] if from != -1 else "<START>",
-		State.keys()[to]
-	])
+	#print("[%s] %s => %s" %[
+		#Engine.get_physics_frames(),
+		#State.keys()[from] if from != -1 else "<START>",
+		#State.keys()[to]
+	#])
 	# 从不在地上的状态动画 并且 落在了地上 停掉郊狼时间
 	if from not in GROUND_STATES and to in GROUND_STATES:
 		coyote_timer.stop()
@@ -337,6 +383,8 @@ func transition_state(from: State, to: State) -> void:
 			# 判断是否从地板上开始下落的 开始郊狼时间
 			if from in GROUND_STATES:
 				coyote_timer.start()
+			fall_from_y = global_position.y
+				
 		State.LANDING:
 			animation_player.play("landing")
 		
@@ -379,9 +427,13 @@ func transition_state(from: State, to: State) -> void:
 			animation_player.play("die")
 			# 死亡暂停无敌2s闪光
 			invincible_timer.stop()
+			# 清空交互对象
+			interacting_with.clear()
 		
 		State.SLIDING_START:
 			animation_player.play("sliding_start")
+			slide_request_timer.stop()
+			stats.energy -= SLIDING_ENERGY
 		
 		State.SLIDING_LOOP:
 			animation_player.play("sliding_loop")

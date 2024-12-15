@@ -2,6 +2,7 @@ extends Node2D
 
 @onready var tile_map: TileMap = $TileMap
 @onready var camera_2d: Camera2D = $Player/Camera2D
+@onready var player: Player = $Player
 
 func _ready() -> void:
 	# 设置 相机 limit
@@ -14,4 +15,11 @@ func _ready() -> void:
 	camera_2d.limit_bottom = used.end.y * tile_size.y
 	camera_2d.limit_left = used.position.x * tile_size.x
 	# 清除刚开始的镜头过度
+	camera_2d.reset_smoothing()
+
+# 更新 用户位置，朝向信息
+func update_player(pos: Vector2, direction: Player.Direction) -> void:
+	player.global_position = pos
+	player.direction = direction
+	# 取消相机移动过渡
 	camera_2d.reset_smoothing()
