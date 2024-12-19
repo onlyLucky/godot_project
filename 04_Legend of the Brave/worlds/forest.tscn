@@ -62,6 +62,9 @@ drag_vertical_enabled = true
 [node name="Boar" parent="." instance=ExtResource("7_0h041")]
 position = Vector2(448, 144)
 
+[node name="Boar2" parent="." instance=ExtResource("7_0h041")]
+position = Vector2(272, 192)
+
 [node name="Decorations" type="Node2D" parent="."]
 metadata/_edit_group_ = true
 metadata/_edit_lock_ = true
