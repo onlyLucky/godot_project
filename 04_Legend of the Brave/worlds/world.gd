@@ -19,6 +19,7 @@ func _ready() -> void:
 
 # 更新 用户位置，朝向信息
 func update_player(pos: Vector2, direction: Player.Direction) -> void:
+	print("update_player",pos,direction)
 	player.global_position = pos
 	player.direction = direction
 	# 取消相机移动过渡

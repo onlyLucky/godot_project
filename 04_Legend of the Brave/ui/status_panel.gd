@@ -21,6 +21,12 @@ func _ready() -> void:
 	# 手动调用 第一次初能量条
 	update_energy()
 
+	# 4.2 场景树退出断开链接（）
+	tree_exited.connect(func():
+		stats.health_changed.disconnect(unpdate_health)
+		stats.energy_changed.disconnect(update_energy)
+	)
+
 func unpdate_health(skip_anim := false) -> void:
 	var percentage := stats.health / float(stats.max_health)
 	health_bar.value = percentage
