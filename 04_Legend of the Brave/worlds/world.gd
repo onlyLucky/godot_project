@@ -24,6 +24,7 @@ func update_player(pos: Vector2, direction: Player.Direction) -> void:
 	player.direction = direction
 	# 取消相机移动过渡
 	camera_2d.reset_smoothing()
+	camera_2d.force_update_scroll()
 	
 
 # 储存场景状态数据
