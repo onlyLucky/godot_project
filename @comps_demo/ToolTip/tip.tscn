@@ -1,0 +1,35 @@
+[gd_scene load_steps=3 format=3 uid="uid://dlpivu0mmh2gb"]
+
+[ext_resource type="Texture2D" uid="uid://by8ok2t3gwc6p" path="res://ToolTip/icon.svg" id="1_almid"]
+[ext_resource type="Script" path="res://ToolTip/tip.gd" id="1_dewam"]
+
+[node name="Tip" type="Control"]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_dewam")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_almid")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -32.0
+offset_top = -11.5
+offset_right = 32.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+text = "提示显示"
+horizontal_alignment = 1
+vertical_alignment = 1

@@ -1,0 +1,56 @@
+[gd_scene load_steps=3 format=3 uid="uid://8k12unbaf32"]
+
+[ext_resource type="Texture2D" uid="uid://by8ok2t3gwc6p" path="res://ToolTip/icon.svg" id="1_lvj23"]
+[ext_resource type="Script" path="res://ToolTip/TextureRect.gd" id="2_wawnh"]
+
+[node name="main" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 2
+offset_left = 78.0
+offset_top = 260.0
+offset_right = 206.0
+offset_bottom = 388.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+tooltip_text = "提示"
+texture = ExtResource("1_lvj23")
+script = ExtResource("2_wawnh")
+
+[node name="TextureRect2" type="TextureRect" parent="."]
+layout_mode = 2
+offset_left = 367.0
+offset_top = 260.0
+offset_right = 495.0
+offset_bottom = 388.0
+size_flags_horizontal = 6
+size_flags_vertical = 4
+texture = ExtResource("1_lvj23")
+
+[node name="TextureRect3" type="TextureRect" parent="."]
+layout_mode = 2
+offset_left = 656.0
+offset_top = 260.0
+offset_right = 784.0
+offset_bottom = 388.0
+size_flags_horizontal = 6
+size_flags_vertical = 4
+texture = ExtResource("1_lvj23")
+
+[node name="TextureRect4" type="TextureRect" parent="."]
+layout_mode = 2
+offset_left = 945.0
+offset_top = 260.0
+offset_right = 1073.0
+offset_bottom = 388.0
+size_flags_horizontal = 6
+size_flags_vertical = 4
+texture = ExtResource("1_lvj23")
