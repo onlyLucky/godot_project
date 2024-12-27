@@ -10,6 +10,6 @@ Renderer: Compatibility
 Check out this demo on the asset library: https://godotengine.org/asset-library/asset/132
 
 
-### 富文本展示 RichTextLable
+### 富文本展示 RichTextLabel
 
 BBCode 语法 

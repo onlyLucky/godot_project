@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://d2rkfvj6hp4l7"
-path="res://.godot/imported/unicorn_icon.png-66d04c551aeafcb679b69aae69ed4d9b.ctex"
+path="res://.godot/imported/unicorn_icon.png-9c43bb56fbef2e9d9c8ef4b7174027de.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://RichTextLable/unicorn_icon.png"
-dest_files=["res://.godot/imported/unicorn_icon.png-66d04c551aeafcb679b69aae69ed4d9b.ctex"]
+source_file="res://RichTextLabel/unicorn_icon.png"
+dest_files=["res://.godot/imported/unicorn_icon.png-9c43bb56fbef2e9d9c8ef4b7174027de.ctex"]
 
 [params]
 
