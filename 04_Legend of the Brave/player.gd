@@ -87,6 +87,7 @@ var interacting_with: Array[Interactable]
 @onready var invincible_timer: Timer = $InvincibleTimer
 @onready var slide_request_timer: Timer = $SlideRequestTimer
 @onready var interaction_icon: AnimatedSprite2D = $InteractionIcon
+@onready var game_over_screen: Control = $CanvasLayer/GameOverScreen
 
 
 # 判断当前输入时间
@@ -207,7 +208,7 @@ func slide(delta: float)-> void:
 # 玩家死亡
 func die() -> void:
 	# 重新调用当前场景
-	get_tree().reload_current_scene()
+	game_over_screen.show_game_over
 
 # 注册可交互对象
 func register_interactable(v: Interactable) -> void:
@@ -377,6 +378,7 @@ func transition_state(from: State, to: State) -> void:
 			velocity.y = JUMP_VELOCITY
 			coyote_timer.stop()
 			jump_request_timer.stop()
+			SoundManger.play_sfx("Jump")
 			
 		State.FALL:
 			animation_player.play("fall")
@@ -401,6 +403,7 @@ func transition_state(from: State, to: State) -> void:
 		State.ATTACK_1:
 			animation_player.play("attack_1")
 			is_combo_requested = false
+			SoundManger.play_sfx("Attack")
 		
 		State.ATTACK_2:
 			animation_player.play("attack_2")

@@ -1,6 +1,8 @@
 class_name World
 extends Node2D
 
+@export var bgm: AudioStream
+
 @onready var tile_map: TileMap = $TileMap
 @onready var camera_2d: Camera2D = $Player/Camera2D
 @onready var player: Player = $Player
@@ -17,6 +19,9 @@ func _ready() -> void:
 	camera_2d.limit_left = used.position.x * tile_size.x
 	# 清除刚开始的镜头过度
 	camera_2d.reset_smoothing()
+	
+	if bgm:
+		SoundManger.play_bgm(bgm)
 	
 # 测试输入
 func _unhandled_input(event: InputEvent) -> void:

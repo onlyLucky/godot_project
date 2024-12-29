@@ -1,9 +1,10 @@
-[gd_scene load_steps=14 format=3 uid="uid://c31tjfjltrqb8"]
+[gd_scene load_steps=15 format=3 uid="uid://c31tjfjltrqb8"]
 
 [ext_resource type="Script" path="res://worlds/world.gd" id="1_ayi2q"]
 [ext_resource type="Texture2D" uid="uid://dwis57ppcfdwg" path="res://assets/legacy_fantasy/Trees/Tree-Assets.png" id="1_ek6c5"]
 [ext_resource type="TileSet" uid="uid://1usvfeoxftcs" path="res://assets/tiles.tres" id="2_1y8va"]
 [ext_resource type="PackedScene" uid="uid://js4vmvkd37np" path="res://player.tscn" id="2_k07u7"]
+[ext_resource type="AudioStream" uid="uid://bama5iv0jqs0u" path="res://assets/bgm/21 11 forest LOOP.mp3" id="2_nw4fd"]
 [ext_resource type="PackedScene" uid="uid://dfxc3uthhg3dj" path="res://objects/mine_gate.tscn" id="3_b5w7k"]
 [ext_resource type="Texture2D" uid="uid://bvingwtrh0y27" path="res://assets/legacy_fantasy/Background/Background.png" id="4_nnyet"]
 [ext_resource type="Script" path="res://classes/EntryPoint.gd" id="4_pb80w"]
@@ -18,6 +19,7 @@ size = Vector2(16, 15)
 
 [node name="World" type="Node2D"]
 script = ExtResource("1_ayi2q")
+bgm = ExtResource("2_nw4fd")
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = ExtResource("2_1y8va")

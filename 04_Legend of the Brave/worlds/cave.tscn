@@ -1,6 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://bb5jcvdre74hw"]
+[gd_scene load_steps=9 format=3 uid="uid://bb5jcvdre74hw"]
 
-[ext_resource type="Script" path="res://worlds/world.gd" id="1_10fti"]
+[ext_resource type="Script" path="res://worlds/cave.gd" id="1_3fj7k"]
+[ext_resource type="AudioStream" uid="uid://dq1erq62u4xnv" path="res://assets/bgm/27 14 BOSS fixing LOOP.mp3" id="2_h1256"]
 [ext_resource type="PackedScene" uid="uid://dfxc3uthhg3dj" path="res://objects/mine_gate.tscn" id="3_wtp5d"]
 [ext_resource type="Script" path="res://classes/EntryPoint.gd" id="4_4x2hs"]
 [ext_resource type="PackedScene" uid="uid://js4vmvkd37np" path="res://player.tscn" id="5_bve36"]
@@ -9,7 +10,8 @@
 [ext_resource type="PackedScene" uid="uid://cnp6m14aibd46" path="res://objects/save_stone.tscn" id="7_bv7kc"]
 
 [node name="World" type="Node2D"]
-script = ExtResource("1_10fti")
+script = ExtResource("1_3fj7k")
+bgm = ExtResource("2_h1256")
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = ExtResource("5_wflsl")
@@ -63,3 +65,5 @@ layer_0/tile_data = PackedInt32Array(0, 589825, 11, 65536, 589825, 12, 131072, 4
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 color = Color(0.411765, 0.411765, 0.411765, 1)
+
+[connection signal="died" from="Boar" to="." method="_on_boar_died"]
