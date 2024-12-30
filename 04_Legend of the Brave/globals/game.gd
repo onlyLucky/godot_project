@@ -2,6 +2,8 @@ extends Node
 
 # 用户存档保存位置
 const SAVE_PATH :="user://data.sav"
+# 用户配置文件
+const CONFIG_PATH := "user://config.ini"
 
 #场景名称 => {
 	#enemies_alive => [敌人的路径]
@@ -17,6 +19,7 @@ var world_states :={}
 
 func _ready() -> void:
 	color_rect.color.a = 0
+	load_config()
 
 
 #场景切换调用函数 entry_point 传送门定位点
@@ -127,3 +130,33 @@ func back_to_title() -> void:
 	
 func has_save() -> bool:
 	return FileAccess.file_exists(SAVE_PATH)
+
+#保存配置文件
+func save_config() -> void:
+	var config := ConfigFile.new()
+	
+	config.set_value("audio", "master", SoundManger.get_volume(SoundManger.Bus.MASTER))
+	config.set_value("audio", "sfx", SoundManger.get_volume(SoundManger.Bus.SFX))
+	config.set_value("audio", "bgm", SoundManger.get_volume(SoundManger.Bus.BGM))
+	
+	config.save(CONFIG_PATH)
+	
+# 加载配置
+func load_config() -> void:
+	var config := ConfigFile.new()
+	config.load(CONFIG_PATH)
+	
+	SoundManger.set_volum(
+		SoundManger.Bus.MASTER,
+		config.get_value("audio","master", 0.5)
+	)
+	SoundManger.set_volum(
+		SoundManger.Bus.SFX,
+		config.get_value("audio","sfx", 0.5)
+	)
+	SoundManger.set_volum(
+		SoundManger.Bus.BGM,
+		config.get_value("audio","bgm", 0.5)
+	)
+
+

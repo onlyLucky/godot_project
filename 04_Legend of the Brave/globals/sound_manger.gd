@@ -2,6 +2,9 @@ extends Node
 
 #音效场景
 
+# 音频总线下标枚举
+enum Bus { MASTER, SFX, BGM }
+
 @onready var sfx: Node = $SFX
 @onready var bgm_player: AudioStreamPlayer = $BGMPlayer
 
@@ -26,3 +29,17 @@ func setup_ui_sounds(node: Node) -> void:
 		
 	for child in node.get_children():
 		setup_ui_sounds(child)
+
+
+# 获取音量
+func get_volume(bus_index: int) -> float:
+	var db := AudioServer.get_bus_volume_db(bus_index)
+	return db_to_linear(db)
+	
+# 设置音量
+func set_volum(bus_index: int, v: float) ->void:
+	var db := linear_to_db(v)
+	AudioServer.set_bus_volume_db(bus_index, db)
+	
+	
+	
