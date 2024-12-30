@@ -105,3 +105,9 @@ func _on_button_clear_single_pressed():
 
 func _on_button_symbol_pressed():
 	cal.changeSymbol()
+
+
+func _on_button_point_pressed() -> void:
+	if cal.current_num.contains("."):
+		return
+	cal.input_number(".")

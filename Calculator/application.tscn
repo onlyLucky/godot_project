@@ -219,6 +219,7 @@ text = "="
 [connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/GridContainer/Button3" to="." method="_on_button_3_pressed"]
 [connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/GridContainer/ButtonSymbol" to="." method="_on_button_symbol_pressed"]
 [connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/GridContainer/Button0" to="." method="_on_button_0_pressed"]
+[connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/GridContainer/ButtonPoint" to="." method="_on_button_point_pressed"]
 [connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/ButtonDiv" to="." method="_on_button_div_pressed"]
 [connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/ButtonMul" to="." method="_on_button_mul_pressed"]
 [connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/ButtonAdd" to="." method="_on_button_add_pressed"]
