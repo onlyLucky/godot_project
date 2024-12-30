@@ -35,7 +35,7 @@ func _init():
 	current_num = "0"
 	print("init")
 
-func input_number(value: int):
+func input_number(value: Variant):
 	if is_error or isEqual:
 		clear()
 	if new_number:
@@ -43,6 +43,11 @@ func input_number(value: int):
 		new_number = false
 	if current_num.length()<=0 or current_num=='0':
 		current_num = ""
+	
+	if value is String and value == ".":
+		if current_num.length()<=0:
+			current_num = "0"
+	
 	current_num += str(value)
 	if sign:
 		num2 = current_num
