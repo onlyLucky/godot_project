@@ -24,10 +24,10 @@ func _ready() -> void:
 		SoundManger.play_bgm(bgm)
 	
 # 测试输入
-func _unhandled_input(event: InputEvent) -> void:
-	# 按下esc
-	if event.is_action_pressed("ui_cancel"):
-		Game.back_to_title()
+#func _unhandled_input(event: InputEvent) -> void:
+	## 按下esc
+	#if event.is_action_pressed("ui_cancel"):
+		#Game.back_to_title()
 
 # 更新 用户位置，朝向信息
 func update_player(pos: Vector2, direction: Player.Direction) -> void:
