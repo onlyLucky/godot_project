@@ -1,6 +1,9 @@
 extends AnimatedSprite2D
 # 根据设备不同显示不一样的动画
 
+# 触屏设备
+#DisplayServer.is_touchscreen_available()
+
 # 触发遥杆事件死区
 const STICK_DEADZONE := 0.3
 # 鼠标移动速度死区
