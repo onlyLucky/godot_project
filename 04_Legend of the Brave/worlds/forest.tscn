@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://c31tjfjltrqb8"]
+[gd_scene load_steps=16 format=3 uid="uid://c31tjfjltrqb8"]
 
 [ext_resource type="Script" path="res://worlds/world.gd" id="1_ayi2q"]
 [ext_resource type="Texture2D" uid="uid://dwis57ppcfdwg" path="res://assets/legacy_fantasy/Trees/Tree-Assets.png" id="1_ek6c5"]
@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://bi0k0cfcmlo1y" path="res://assets/legacy_fantasy/Trees/Background_hill.png" id="5_xuc2j"]
 [ext_resource type="Texture2D" uid="uid://oq8112xldtix" path="res://assets/legacy_fantasy/Trees/Background_tree.png" id="6_ggdmq"]
 [ext_resource type="PackedScene" uid="uid://ctt4t5hr3qxca" path="res://enemies/boar.tscn" id="7_0h041"]
+[ext_resource type="Script" path="res://classes/ShakyCamera.gd" id="8_cnwlo"]
 [ext_resource type="Script" path="res://classes/Interactable.gd" id="8_rq3m8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_u6oqq"]
@@ -64,6 +65,7 @@ limit_smoothed = true
 position_smoothing_speed = 25.0
 drag_horizontal_enabled = true
 drag_vertical_enabled = true
+script = ExtResource("8_cnwlo")
 
 [node name="Boar" parent="." instance=ExtResource("7_0h041")]
 position = Vector2(448, 144)
@@ -97,19 +99,19 @@ centered = false
 region_rect = Rect2(800, 0, 96, 256)
 
 [node name="Background2" type="Sprite2D" parent="Decorations/ParallaxBackground/Hills"]
-position = Vector2(94, 33)
+position = Vector2(95, 33)
 texture = ExtResource("5_xuc2j")
 centered = false
 region_rect = Rect2(800, 0, 96, 256)
 
 [node name="Background3" type="Sprite2D" parent="Decorations/ParallaxBackground/Hills"]
-position = Vector2(189, 33)
+position = Vector2(190, 33)
 texture = ExtResource("5_xuc2j")
 centered = false
 region_rect = Rect2(800, 0, 96, 256)
 
 [node name="Background4" type="Sprite2D" parent="Decorations/ParallaxBackground/Hills"]
-position = Vector2(284, 33)
+position = Vector2(285, 33)
 texture = ExtResource("5_xuc2j")
 centered = false
 region_rect = Rect2(800, 0, 96, 256)
@@ -119,22 +121,27 @@ motion_scale = Vector2(0.6, 0.3)
 motion_mirroring = Vector2(378, 0)
 
 [node name="Background" type="Sprite2D" parent="Decorations/ParallaxBackground/Trees"]
-position = Vector2(48, 193)
+position = Vector2(36, 192)
 texture = ExtResource("6_ggdmq")
 region_rect = Rect2(112, 0, 96, 256)
 
 [node name="Background2" type="Sprite2D" parent="Decorations/ParallaxBackground/Trees"]
-position = Vector2(142, 192)
+position = Vector2(131, 192)
 texture = ExtResource("6_ggdmq")
 region_rect = Rect2(112, 0, 96, 256)
 
 [node name="Background3" type="Sprite2D" parent="Decorations/ParallaxBackground/Trees"]
-position = Vector2(237, 192)
+position = Vector2(226, 192)
 texture = ExtResource("6_ggdmq")
 region_rect = Rect2(112, 0, 96, 256)
 
 [node name="Background4" type="Sprite2D" parent="Decorations/ParallaxBackground/Trees"]
-position = Vector2(332, 192)
+position = Vector2(321, 192)
+texture = ExtResource("6_ggdmq")
+region_rect = Rect2(112, 0, 96, 256)
+
+[node name="Background5" type="Sprite2D" parent="Decorations/ParallaxBackground/Trees"]
+position = Vector2(416, 192)
 texture = ExtResource("6_ggdmq")
 region_rect = Rect2(112, 0, 96, 256)
 
@@ -337,7 +344,6 @@ region_enabled = true
 region_rect = Rect2(210, 293, 124, 86)
 
 [node name="Mushroom" type="Area2D" parent="."]
-visible = false
 position = Vector2(152, 181)
 script = ExtResource("8_rq3m8")
 metadata/_edit_lock_ = true
@@ -348,7 +354,6 @@ position = Vector2(0, 2.5)
 shape = SubResource("RectangleShape2D_u6oqq")
 
 [node name="Vegatable" type="Area2D" parent="."]
-visible = false
 position = Vector2(40, 148)
 script = ExtResource("8_rq3m8")
 metadata/_edit_lock_ = true

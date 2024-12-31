@@ -1,5 +1,7 @@
 extends Node
 
+signal camera_should_shake(amount: float)
+
 # 用户存档保存位置
 const SAVE_PATH :="user://data.sav"
 # 用户配置文件
@@ -159,4 +161,9 @@ func load_config() -> void:
 		config.get_value("audio","bgm", 0.5)
 	)
 
+
+# 发送摄像头震动的信号
+func shake_camera(amount: float) -> void:
+	camera_should_shake.emit(amount)
+	
 

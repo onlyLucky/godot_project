@@ -212,7 +212,7 @@ func slide(delta: float)-> void:
 # 玩家死亡
 func die() -> void:
 	# 重新调用当前场景
-	game_over_screen.show_game_over
+	game_over_screen.show_game_over()
 
 # 注册可交互对象
 func register_interactable(v: Interactable) -> void:
@@ -421,7 +421,8 @@ func transition_state(from: State, to: State) -> void:
 			animation_player.play("hurt")
 			
 			# 受到伤害，给手柄马达添加震动
-			Input.start_joy_vibration(0,0,0.8,0.8)
+			#Input.start_joy_vibration(0,0,0.8,0.8)
+			Game.shake_camera(4)
 			
 			# 进行扣血， 执行击退效果
 			stats.health -= pending_damage.amount
@@ -470,3 +471,12 @@ func _on_hurtbox_hurt(hitbox: Hitbox) -> void:
 	pending_damage = Damage.new()
 	pending_damage.amount = 1
 	pending_damage.source = hitbox.owner
+
+# 攻击别人时候
+func _on_hitbox_hit(hurtbox: Variant) -> void:
+	Game.shake_camera(2)
+	
+	# 设置顿帧
+	Engine.time_scale = 0.01
+	await get_tree().create_timer(0.05, true, false, true).timeout
+	Engine.time_scale = 1
