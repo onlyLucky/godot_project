@@ -419,6 +419,10 @@ func transition_state(from: State, to: State) -> void:
 		
 		State.HURT:
 			animation_player.play("hurt")
+			
+			# 受到伤害，给手柄马达添加震动
+			Input.start_joy_vibration(0,0,0.8,0.8)
+			
 			# 进行扣血， 执行击退效果
 			stats.health -= pending_damage.amount
 			# 方向  伤害来源位置指向自己位置

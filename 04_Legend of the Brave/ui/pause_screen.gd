@@ -13,7 +13,7 @@ func _ready() -> void:
 	)
 
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("pause"):
+	if event.is_action_pressed("pause") or event.is_action_pressed("ui_cancel"):
 		hide()
 		# 禁止esc 按键继续往下传
 		get_window().set_input_as_handled()
