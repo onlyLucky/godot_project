@@ -1,11 +1,19 @@
-[gd_scene load_steps=2 format=3 uid="uid://bf087i4kdnk37"]
+[gd_scene load_steps=3 format=3 uid="uid://bf087i4kdnk37"]
 
 [ext_resource type="Script" path="res://scenes/viewer/viewer.gd" id="1_5e64i"]
+[ext_resource type="PackedScene" uid="uid://du4lbdfwadder" path="res://scenes/viewer/base_panel.tscn" id="2_a885q"]
 
 [node name="Viewer" type="PanelContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 size_flags_horizontal = 3
+size_flags_vertical = 3
 size_flags_stretch_ratio = 5.0
 script = ExtResource("1_5e64i")
+PACK_BASE_PANEL = ExtResource("2_a885q")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 2
@@ -17,11 +25,11 @@ theme_override_constants/margin_bottom = 10
 [node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer"]
 layout_mode = 2
 
-[node name="HFlowContainer" type="HFlowContainer" parent="MarginContainer/ScrollContainer"]
+[node name="HFC_Main" type="HFlowContainer" parent="MarginContainer/ScrollContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="BasePanel" type="PanelContainer" parent="MarginContainer/ScrollContainer/HFlowContainer"]
-custom_minimum_size = Vector2(120, 160)
+[node name="BasePanel" parent="MarginContainer/ScrollContainer/HFC_Main" instance=ExtResource("2_a885q")]
 layout_mode = 2

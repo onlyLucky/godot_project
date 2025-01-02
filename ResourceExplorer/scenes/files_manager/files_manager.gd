@@ -51,9 +51,6 @@ func create_tree_from_dir(parent:TreeItem, directory: String)->void:
 	else:
 		print("尝试访问路径时出错。")
 
-# 监听tree 某一项选中
-func _on_item_selected():
-	directory_changed.emit()
 
 # 获取当前点击文件夹
 func get_current_directory():
@@ -61,3 +58,19 @@ func get_current_directory():
 	if current_item:
 		return current_item.get_metadata(0)
 
+# 获取文件夹下面的所有文件
+func get_current_directory_files():
+	var current_dir = get_current_directory()
+	# 判断当前文件是否存在
+	if not current_dir or not DirAccess.dir_exists_absolute(current_dir):
+		return []
+	var res = []
+	for file in DirAccess.get_files_at(current_dir):
+		res.append(current_dir+"/"+file)
+	return res
+	
+	
+# 监听tree 某一项选中
+func _on_item_selected():
+	directory_changed.emit()
+	
