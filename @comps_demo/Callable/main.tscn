@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cv8c655l36wef"]
+
+[ext_resource type="Script" path="res://Callable/main.gd" id="1_pujc7"]
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_pujc7")
