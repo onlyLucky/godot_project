@@ -38,6 +38,8 @@ func create_tree_from_dir(parent:TreeItem, directory: String)->void:
 		for sub_dir in dir.get_directories():
 			#创建tree 子节点
 			var sub_tree_item = tree.create_item(parent) as TreeItem
+			# 设置树状文件夹更改为收缩
+			sub_tree_item.collapsed = true
 			# 设置图标
 			sub_tree_item.set_icon(0,ICON_FOLDER)
 			sub_tree_item.set_icon_max_width(0, 24)
