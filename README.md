@@ -12,3 +12,4 @@
 - [Calculator](./Calculator/) 计算器 桌面应用 （布局）
 
 - [@comps_demo](./@comps_demo/) 基础 demo 场景 小功能 shader ...
+- [ResourceExplorer](./ResourceExplorer) 资源浏览器
