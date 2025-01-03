@@ -1,0 +1,5 @@
+[gd_resource type="SystemFont" format=3 uid="uid://rclpa6tx4mek"]
+
+[resource]
+font_names = PackedStringArray("清松手寫體1")
+font_weight = 800
