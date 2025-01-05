@@ -4,18 +4,28 @@ extends PanelContainer
 @export var PACK_BASE_PANEL:PackedScene
 
 @onready var hfc_main: HFlowContainer = %HFC_Main
+@onready var page_manager: PanelContainer = $VBoxContainer/PageManager as PageManager
+@onready var label_info: Label = $VBoxContainer/MarginContainer2/LabelInfo
 
 # 多线程对象
 var thread_helper:ThreadHelper
 # 图片最大宽度
 var image_max_size := 200
 
+var all_files := []
+
 func _ready() -> void:
-	clear()
+	page_manager.page_changed.connect(show_page_files)
 	thread_helper = ThreadHelper.new(self)
+	clear()
+	page_manager.set_each_page_item_count(5)
 
 # 初始化右侧文件列表
 func init_from_files(files: Array):
+	all_files = files
+	page_manager.set_total_item_count(len(files))
+
+func create_panel_from(files: Array):
 	clear()
 	if not files:
 		return
@@ -23,6 +33,16 @@ func init_from_files(files: Array):
 	for file in files:
 		new_panel(file)
 	thread_helper.start()
+
+# 文件页数更改
+func show_page_files():
+	create_panel_from(page_manager.get_items(all_files))
+	update_label_info()
+	
+
+func update_label_info():
+	label_info.show()
+	label_info.text = "total count: %d, page size: %d" %[page_manager.total_item_count, page_manager.each_page_item_count]
 
 # 清除右侧文件面板基础场景
 func clear():
@@ -83,3 +103,4 @@ func _on_panel_pressed(panel: BasePanel):
 	var image_path = panel.get_meta("image_path")
 	# 获取每一个点击项，打开文件
 	OS.shell_open(image_path)
+	

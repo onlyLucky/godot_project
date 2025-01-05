@@ -1,0 +1,55 @@
+[gd_scene load_steps=6 format=3 uid="uid://du6p184dsscdt"]
+
+[ext_resource type="Script" path="res://scenes/viewer/PageManager/page_manager.gd" id="1_u5bg0"]
+[ext_resource type="Texture2D" uid="uid://ctoh38qmu6g8d" path="res://resource/icons/arrow_left.svg" id="2_rmsyo"]
+[ext_resource type="Texture2D" uid="uid://bvch7xb5afxtf" path="res://resource/icons/arrow_right.svg" id="3_bwt77"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3mqnj"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1iouc"]
+
+[node name="PageManager" type="PanelContainer"]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 41.0
+grow_horizontal = 2
+script = ExtResource("1_u5bg0")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+alignment = 1
+
+[node name="BtnPrev" type="Button" parent="MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_stretch_ratio = 0.0
+theme_override_styles/focus = SubResource("StyleBoxEmpty_3mqnj")
+icon = ExtResource("2_rmsyo")
+icon_alignment = 1
+expand_icon = true
+
+[node name="PageInfo" type="Label" parent="MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "1/7"
+horizontal_alignment = 1
+
+[node name="BtnNext" type="Button" parent="MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_1iouc")
+icon = ExtResource("3_bwt77")
+icon_alignment = 1
+expand_icon = true
