@@ -2,12 +2,14 @@ extends Control
 
 @onready var files_manager: PanelContainer = %FilesManager
 @onready var viewer: PanelContainer = %Viewer
+@onready var menu_bar_panel: PanelContainer = $PanelContainer/VBoxContainer/MenuBarPanel
 
 var image_extensions = ["png","jpg","tiff","svg"]
 
 func _ready() -> void:
+	menu_bar_panel.folder_selected.connect(files_manager.set_file_path)
 	files_manager.directory_changed.connect(_on_directory_changed)
-	pass
+	
 
 # 当前选中文件夹改变调用函数
 func _on_directory_changed():

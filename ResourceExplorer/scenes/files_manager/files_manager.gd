@@ -21,6 +21,10 @@ func _ready() -> void:
 	tree.hide_root = true
 	file_path = "E:/uploadFiles"
 	tree.item_selected.connect(_on_item_selected)
+	
+func set_file_path(value: String):
+	assert(DirAccess.dir_exists_absolute(value), "file path must exists!")
+	file_path = value	
 
 # 修改  外部file_path init
 func init_file_path():

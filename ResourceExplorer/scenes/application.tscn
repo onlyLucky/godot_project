@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://d2podveya7v35"]
+[gd_scene load_steps=5 format=3 uid="uid://d2podveya7v35"]
 
 [ext_resource type="PackedScene" uid="uid://dfltdw5t1vs1x" path="res://scenes/files_manager/files_manager.tscn" id="1_6waab"]
 [ext_resource type="Script" path="res://scenes/application.gd" id="1_a1frj"]
+[ext_resource type="PackedScene" uid="uid://cb6qmdjbbcysw" path="res://scenes/menu_bar_panel/menu_bar_panel.tscn" id="2_8uey6"]
 [ext_resource type="PackedScene" uid="uid://bf087i4kdnk37" path="res://scenes/viewer/viewer.tscn" id="2_a1vxt"]
 
 [node name="Application" type="Control"]
@@ -24,27 +25,8 @@ grow_vertical = 2
 [node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer"]
 layout_mode = 2
 
-[node name="MenuBar" type="PanelContainer" parent="PanelContainer/VBoxContainer"]
+[node name="MenuBarPanel" parent="PanelContainer/VBoxContainer" instance=ExtResource("2_8uey6")]
 layout_mode = 2
-
-[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/VBoxContainer/MenuBar"]
-layout_mode = 2
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 10
-
-[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/VBoxContainer/MenuBar/MarginContainer"]
-layout_mode = 2
-
-[node name="MenuBar" type="MenuBar" parent="PanelContainer/VBoxContainer/MenuBar/MarginContainer/HBoxContainer"]
-layout_mode = 2
-
-[node name="File" type="PopupMenu" parent="PanelContainer/VBoxContainer/MenuBar/MarginContainer/HBoxContainer/MenuBar"]
-
-[node name="Edit" type="PopupMenu" parent="PanelContainer/VBoxContainer/MenuBar/MarginContainer/HBoxContainer/MenuBar"]
-
-[node name="Help" type="PopupMenu" parent="PanelContainer/VBoxContainer/MenuBar/MarginContainer/HBoxContainer/MenuBar"]
 
 [node name="MarginContainer" type="MarginContainer" parent="PanelContainer/VBoxContainer"]
 layout_mode = 2
