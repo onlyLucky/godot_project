@@ -1,7 +1,25 @@
-[gd_scene load_steps=3 format=3 uid="uid://du4lbdfwadder"]
+[gd_scene load_steps=7 format=3 uid="uid://du4lbdfwadder"]
 
 [ext_resource type="Script" path="res://scenes/viewer/base_panel.gd" id="1_ban74"]
 [ext_resource type="Texture2D" uid="uid://dlpouebmugmx6" path="res://resource/icons/image.svg" id="2_8ubvq"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_x47i7"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3ec30"]
+bg_color = Color(0.6, 0.6, 0.6, 0.0470588)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b12mu"]
+bg_color = Color(0.41, 0.41, 0.41, 0.372549)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_atpgq"]
 
 [node name="BasePanel" type="PanelContainer"]
 custom_minimum_size = Vector2(120, 160)
@@ -49,3 +67,10 @@ layout_mode = 2
 text = "Title"
 vertical_alignment = 1
 clip_text = true
+
+[node name="FileItemBtn" type="Button" parent="."]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxEmpty_x47i7")
+theme_override_styles/hover = SubResource("StyleBoxFlat_3ec30")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_b12mu")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_atpgq")
