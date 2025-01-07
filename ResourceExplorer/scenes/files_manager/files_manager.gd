@@ -16,15 +16,19 @@ var root: TreeItem
 			init_file_path()
 #tree 文件夹图标
 @export var ICON_FOLDER: Resource
+# 当前选中件夹
+var _current_directory:=""
 
 func _ready() -> void:
 	tree.hide_root = true
-	file_path = "E:/uploadFiles"
+	#file_path = "E:/uploadFiles"
 	tree.item_selected.connect(_on_item_selected)
 	
+# 设置左侧文件地址
 func set_file_path(value: String):
 	assert(DirAccess.dir_exists_absolute(value), "file path must exists!")
-	file_path = value	
+	file_path = value
+	Global.user_data.file_path = value	
 
 # 修改  外部file_path init
 func init_file_path():
@@ -57,12 +61,21 @@ func create_tree_from_dir(parent:TreeItem, directory: String)->void:
 	else:
 		print("尝试访问路径时出错。")
 
+#设置选择文件路径
+func set_current_directory(value: String):
+	_current_directory = value
+	Global.user_data.directory_selected = value
+	directory_changed.emit()
 
 # 获取当前点击文件夹
 func get_current_directory():
+	return _current_directory
+
+func get_directory_from_selection() -> String:
 	var current_item := tree.get_selected() as TreeItem
 	if current_item:
 		return current_item.get_metadata(0)
+	return ""
 
 # 获取文件夹下面的所有文件
 func get_current_directory_files():
@@ -78,5 +91,6 @@ func get_current_directory_files():
 	
 # 监听tree 某一项选中
 func _on_item_selected():
-	directory_changed.emit()
+	set_current_directory(get_directory_from_selection())
+	
 	

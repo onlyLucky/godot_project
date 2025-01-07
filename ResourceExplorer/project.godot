@@ -11,9 +11,14 @@ config_version=5
 [application]
 
 config/name="资源浏览器"
-run/main_scene="res://scenes/application.tscn"
+run/main_scene="res://scenes/Start/start.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
+boot_splash/show_image=false
 config/icon="res://icon.svg"
+
+[autoload]
+
+Global="*res://globals/global.gd"
 
 [display]
 

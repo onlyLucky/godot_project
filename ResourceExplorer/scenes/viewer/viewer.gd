@@ -18,7 +18,7 @@ func _ready() -> void:
 	page_manager.page_changed.connect(show_page_files)
 	thread_helper = ThreadHelper.new(self)
 	clear()
-	page_manager.set_each_page_item_count(5)
+	page_manager.set_each_page_item_count(10)
 
 # 初始化右侧文件列表
 func init_from_files(files: Array):
@@ -73,6 +73,9 @@ func new_panel(image_path: String):
 # 从线程中加载image
 func add_image_from_thread(panel, image_path):
 	var image = Image.load_from_file(image_path)
+	if image == null:
+		print("Failed to load image from path:", image_path)
+		return
 	# 优化图片加载 更改为缩略图
 	image = scale_down(image, image_max_size)
 	var texture = ImageTexture.create_from_image(image)
