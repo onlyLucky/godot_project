@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://8k12unbaf32"]
 
-[ext_resource type="Texture2D" uid="uid://by8ok2t3gwc6p" path="res://ToolTip/icon.svg" id="1_lvj23"]
-[ext_resource type="Script" path="res://ToolTip/TextureRect.gd" id="2_wawnh"]
+[ext_resource type="Texture2D" uid="uid://by8ok2t3gwc6p" path="res://comps/base/ToolTip/icon.svg" id="1_lvj23"]
+[ext_resource type="Script" path="res://comps/base/ToolTip/TextureRect.gd" id="2_wawnh"]
 
 [node name="main" type="Control"]
 layout_mode = 3

@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://oeg5vj7lpjw0"]
 
-[ext_resource type="Script" path="res://RichTextLabel/rich_text_bbcode.gd" id="1"]
+[ext_resource type="Script" path="res://comps/base/RichTextLabel/rich_text_bbcode.gd" id="1"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_q1hwu"]
 
@@ -51,7 +51,7 @@ text = "RichTextLabel is a flexible way of adding text to your project, with sup
 
 Text [color=#4cf]color[/color], [fgcolor=#49c9]foreground [color=#4cf]color[/color][/fgcolor]  and  [bgcolor=#49c9]background [color=#4cf]color[/color][/bgcolor]  can be adjusted.
 
-It's also possible to include [img]res://RichTextLabel/unicorn_icon.png[/img] [font_size=24]custom images[/font_size], as well as [color=aqua][url=https://godotengine.org]custom URLs[/url][/color]. [hint=This displays a hint.]Hover this to display a tooltip![/hint]
+It's also possible to include [img]res://comps/base/RichTextLabel/unicorn_icon.png[/img] [font_size=24]custom images[/font_size], as well as [color=aqua][url=https://godotengine.org]custom URLs[/url][/color]. [hint=This displays a hint.]Hover this to display a tooltip![/hint]
 Left alignment is default,[center]but center alignment is supported,[/center][right]as well as right alignment.[/right]
 
 [fill][dropcap font_size=48 color=yellow margins=0,-10,0,-12]F[/dropcap]ill alignment is also supported, and allows writing very long text that will end up fitting the horizontal space entirely with words of joy. Drop caps are also supported. When using a drop cap, the first character of a paragraph is made larger, taking up several lines of text and optionally using a specific font or color.[/fill]

@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://c3fqgrkgjnd1b"]
 
-[ext_resource type="Texture2D" uid="uid://cl6pkjf53diqf" path="res://JokerCards/icon.svg" id="1_va77x"]
+[ext_resource type="Texture2D" uid="uid://cl6pkjf53diqf" path="res://comps/demo/JokerCards/icon.svg" id="1_va77x"]
 
 [node name="Card" type="Control"]
 layout_mode = 3

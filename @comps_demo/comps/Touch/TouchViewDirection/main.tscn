@@ -1,0 +1,70 @@
+[gd_scene load_steps=3 format=3 uid="uid://c75i0w4vxif0i"]
+
+[ext_resource type="Script" path="res://comps/Touch/TouchViewDirection/main.gd" id="1_inv75"]
+[ext_resource type="Texture2D" uid="uid://b7wfd67wc6od8" path="res://icon.svg" id="1_xujw1"]
+
+[node name="Main" type="Control"]
+custom_minimum_size = Vector2(1100, 200)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_inv75")
+
+[node name="Bg" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.141176, 0.141176, 0.141176, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -236.5
+offset_right = 200.0
+offset_bottom = 236.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 50
+
+[node name="Control" type="Control" parent="VBoxContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="DirImg" type="TextureRect" parent="VBoxContainer/MarginContainer/Control"]
+custom_minimum_size = Vector2(300, 300)
+layout_mode = 2
+offset_right = 300.0
+offset_bottom = 300.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("1_xujw1")
+stretch_mode = 5
+
+[node name="DirLabel" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "向上滑动"
+horizontal_alignment = 1

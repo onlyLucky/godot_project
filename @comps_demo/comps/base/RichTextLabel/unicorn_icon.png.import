@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cl6pkjf53diqf"
-path="res://.godot/imported/icon.svg-e00fb57f4448c06d569b09f53622d27b.ctex"
+uid="uid://d2rkfvj6hp4l7"
+path="res://.godot/imported/unicorn_icon.png-853c04516eadd528960f43fcf739cc09.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://JokerCards/icon.svg"
-dest_files=["res://.godot/imported/icon.svg-e00fb57f4448c06d569b09f53622d27b.ctex"]
+source_file="res://comps/base/RichTextLabel/unicorn_icon.png"
+dest_files=["res://.godot/imported/unicorn_icon.png-853c04516eadd528960f43fcf739cc09.ctex"]
 
 [params]
 
@@ -32,6 +32,3 @@ process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
 detect_3d/compress_to=1
-svg/scale=1.0
-editor/scale_with_editor_scale=false
-editor/convert_colors_with_editor_theme=false
