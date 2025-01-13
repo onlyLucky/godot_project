@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://c46he0qg8xrhp"]
+[gd_scene load_steps=18 format=3 uid="uid://c46he0qg8xrhp"]
 
 [ext_resource type="Shader" path="res://comps/Shader/learn/shader/shader_material.gdshader" id="1_6u8ab"]
 [ext_resource type="Shader" path="res://comps/Shader/learn/shader/shader01.gdshader" id="2_jveyf"]
@@ -8,6 +8,7 @@
 [ext_resource type="Shader" path="res://comps/Shader/learn/shader/shader04.gdshader" id="6_x6rdh"]
 [ext_resource type="Shader" path="res://comps/Shader/learn/shader/shader05_uv_copy.gdshader" id="7_pledr"]
 [ext_resource type="Shader" path="res://comps/Shader/learn/shader/shader06_chessboard.gdshader" id="8_v14gr"]
+[ext_resource type="Shader" path="res://comps/Shader/learn/shader/shader07_overlay.gdshader" id="9_g24bi"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_k0i8u"]
 shader = ExtResource("1_6u8ab")
@@ -45,6 +46,10 @@ shader_parameter/img = ExtResource("2_vsac0")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_oiig3"]
 shader = ExtResource("8_v14gr")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_pb5ta"]
+shader = ExtResource("9_g24bi")
+shader_parameter/img = ExtResource("2_vsac0")
 
 [node name="LearnMain" type="Control"]
 layout_mode = 3
@@ -118,10 +123,23 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="06Chessboard" type="ColorRect" parent="."]
+visible = false
 material = SubResource("ShaderMaterial_oiig3")
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="07Overlay" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_pb5ta")
+custom_minimum_size = Vector2(300, 300)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
