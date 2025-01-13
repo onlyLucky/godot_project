@@ -1,0 +1,127 @@
+[gd_scene load_steps=16 format=3 uid="uid://c46he0qg8xrhp"]
+
+[ext_resource type="Shader" path="res://comps/Shader/learn/shader/shader_material.gdshader" id="1_6u8ab"]
+[ext_resource type="Shader" path="res://comps/Shader/learn/shader/shader01.gdshader" id="2_jveyf"]
+[ext_resource type="Texture2D" uid="uid://b7wfd67wc6od8" path="res://icon.svg" id="2_vsac0"]
+[ext_resource type="Shader" path="res://comps/Shader/learn/shader/shader02_uv.gdshader" id="4_lgigp"]
+[ext_resource type="Shader" path="res://comps/Shader/learn/shader/shader03_uv_t.gdshader" id="5_gnpe1"]
+[ext_resource type="Shader" path="res://comps/Shader/learn/shader/shader04.gdshader" id="6_x6rdh"]
+[ext_resource type="Shader" path="res://comps/Shader/learn/shader/shader05_uv_copy.gdshader" id="7_pledr"]
+[ext_resource type="Shader" path="res://comps/Shader/learn/shader/shader06_chessboard.gdshader" id="8_v14gr"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_k0i8u"]
+shader = ExtResource("1_6u8ab")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_r8csc"]
+shader = ExtResource("2_jveyf")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_opy0m"]
+shader = ExtResource("4_lgigp")
+shader_parameter/a = 3.5
+shader_parameter/b = 1
+shader_parameter/c = Vector2(1, 3.5)
+shader_parameter/d = Vector3(1, 3.5, 0.5)
+shader_parameter/e = Vector4(1, 3.5, 0.5, 1)
+shader_parameter/g = null
+shader_parameter/Image = ExtResource("2_vsac0")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_m41t3"]
+shader = ExtResource("5_gnpe1")
+shader_parameter/angle = 0.86
+shader_parameter/img = ExtResource("2_vsac0")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ijbys"]
+shader = ExtResource("6_x6rdh")
+shader_parameter/fov = 90.0
+shader_parameter/cull_back = true
+shader_parameter/y_rot = 0.0
+shader_parameter/x_rot = 0.0
+shader_parameter/inset = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_st71v"]
+shader = ExtResource("7_pledr")
+shader_parameter/offset = 0.59
+shader_parameter/img = ExtResource("2_vsac0")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_oiig3"]
+shader = ExtResource("8_v14gr")
+
+[node name="LearnMain" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+material = SubResource("ShaderMaterial_k0i8u")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.698039, 0.698039, 0.698039, 1)
+
+[node name="TextureRect" type="TextureRect" parent="."]
+visible = false
+material = SubResource("ShaderMaterial_r8csc")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_vsac0")
+
+[node name="02UV" type="ColorRect" parent="."]
+visible = false
+material = SubResource("ShaderMaterial_opy0m")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="03UV" type="ColorRect" parent="."]
+visible = false
+material = SubResource("ShaderMaterial_m41t3")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="04TextureRect" type="TextureRect" parent="."]
+visible = false
+material = SubResource("ShaderMaterial_ijbys")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_vsac0")
+
+[node name="05UVCopy" type="ColorRect" parent="."]
+visible = false
+material = SubResource("ShaderMaterial_st71v")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="06Chessboard" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_oiig3")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
