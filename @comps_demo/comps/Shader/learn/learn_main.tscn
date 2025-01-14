@@ -201,7 +201,6 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="09Transition" type="ColorRect" parent="."]
-visible = false
 material = SubResource("ShaderMaterial_7gydh")
 layout_mode = 1
 anchors_preset = 15
@@ -221,6 +220,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="11Curve" type="ColorRect" parent="."]
+visible = false
 material = SubResource("ShaderMaterial_ta0o4")
 layout_mode = 1
 anchors_preset = 15
