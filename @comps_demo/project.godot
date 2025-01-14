@@ -24,10 +24,8 @@ MultiTouchViewTouchHelper="*res://comps/Touch/MultiTouchView/TouchHelper.gd"
 
 [display]
 
-window/size/viewport_width=1170
-window/size/viewport_height=540
-window/size/window_width_override=780
-window/size/window_height_override=360
+window/size/viewport_width=1024
+window/size/viewport_height=600
 window/stretch/mode="canvas_items"
 window/stretch/aspect="keep_width"
 window/size/viewport_width.android=0

@@ -269,6 +269,13 @@ float ZIG(float x){
   return 1.0 - abs(1.0 - 2.0 * x);
 }
 
+precision highp float;
+// 转换后
+
+
+
+
+
 
 ```
 

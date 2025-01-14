@@ -1,6 +1,7 @@
-[gd_scene load_steps=20 format=3 uid="uid://c46he0qg8xrhp"]
+[gd_scene load_steps=29 format=3 uid="uid://c46he0qg8xrhp"]
 
 [ext_resource type="Shader" path="res://comps/Shader/learn/shader/shader_material.gdshader" id="1_6u8ab"]
+[ext_resource type="Script" path="res://comps/Shader/learn/learn_main.gd" id="1_g0006"]
 [ext_resource type="Shader" path="res://comps/Shader/learn/shader/shader01.gdshader" id="2_jveyf"]
 [ext_resource type="Texture2D" uid="uid://b7wfd67wc6od8" path="res://icon.svg" id="2_vsac0"]
 [ext_resource type="Shader" path="res://comps/Shader/learn/shader/shader02_uv.gdshader" id="4_lgigp"]
@@ -10,6 +11,9 @@
 [ext_resource type="Shader" path="res://comps/Shader/learn/shader/shader06_chessboard.gdshader" id="8_v14gr"]
 [ext_resource type="Shader" path="res://comps/Shader/learn/shader/shader07_overlay.gdshader" id="9_g24bi"]
 [ext_resource type="Shader" path="res://comps/Shader/learn/shader/shader08_transition.gdshader" id="10_5a1f2"]
+[ext_resource type="Shader" path="res://comps/Shader/learn/shader/shader09_transition.gdshader" id="11_x36gl"]
+[ext_resource type="Shader" path="res://comps/Shader/learn/shader/shader10_comm.gdshader" id="12_v1bao"]
+[ext_resource type="Shader" path="res://comps/Shader/learn/shader/shader11_curve.gdshader" id="14_pjxry"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_k0i8u"]
 shader = ExtResource("1_6u8ab")
@@ -62,6 +66,35 @@ shader_parameter/iFrame = null
 shader_parameter/iMouse = null
 shader_parameter/iDate = null
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7gydh"]
+shader = ExtResource("11_x36gl")
+shader_parameter/iResolution = Vector3(1200, 600, -20)
+shader_parameter/iTime = -1.555
+shader_parameter/iTimeDelta = null
+shader_parameter/iFrameRate = null
+shader_parameter/iFrame = null
+shader_parameter/iMouse = null
+shader_parameter/iDate = null
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lsmrv"]
+shader = ExtResource("12_v1bao")
+shader_parameter/value = null
+shader_parameter/iMouse = null
+shader_parameter/iTime = null
+
+[sub_resource type="Curve" id="Curve_c357g"]
+_data = [Vector2(0.0108108, 0.000522971), 0.0, 0.0, 0, 0, Vector2(0.108108, 0.517259), 0.0571748, 0.0571748, 0, 0, Vector2(0.835135, 0.51046), 0.0, 0.0, 0, 0, Vector2(0.994595, 1), -0.0698803, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_i7qhq"]
+width = 1024
+curve = SubResource("Curve_c357g")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ta0o4"]
+shader = ExtResource("14_pjxry")
+shader_parameter/iTime = 1.0
+shader_parameter/curve = SubResource("CurveTexture_i7qhq")
+
 [node name="LearnMain" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -69,6 +102,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_g0006")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 visible = false
@@ -157,7 +191,37 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="08Transition" type="ColorRect" parent="."]
+visible = false
 material = SubResource("ShaderMaterial_pqhjg")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="09Transition" type="ColorRect" parent="."]
+visible = false
+material = SubResource("ShaderMaterial_7gydh")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="10Comm" type="ColorRect" parent="."]
+visible = false
+material = SubResource("ShaderMaterial_lsmrv")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="11Curve" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_ta0o4")
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
