@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://c46he0qg8xrhp"]
+[gd_scene load_steps=31 format=3 uid="uid://c46he0qg8xrhp"]
 
 [ext_resource type="Shader" path="res://comps/Shader/learn/shader/shader_material.gdshader" id="1_6u8ab"]
 [ext_resource type="Script" path="res://comps/Shader/learn/learn_main.gd" id="1_g0006"]
@@ -14,6 +14,7 @@
 [ext_resource type="Shader" path="res://comps/Shader/learn/shader/shader09_transition.gdshader" id="11_x36gl"]
 [ext_resource type="Shader" path="res://comps/Shader/learn/shader/shader10_comm.gdshader" id="12_v1bao"]
 [ext_resource type="Shader" path="res://comps/Shader/learn/shader/shader11_curve.gdshader" id="14_pjxry"]
+[ext_resource type="Shader" path="res://comps/Shader/learn/example/shader001.gdshader" id="15_j6yve"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_k0i8u"]
 shader = ExtResource("1_6u8ab")
@@ -94,6 +95,23 @@ curve = SubResource("Curve_c357g")
 shader = ExtResource("14_pjxry")
 shader_parameter/iTime = 1.0
 shader_parameter/curve = SubResource("CurveTexture_i7qhq")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hawpb"]
+shader = ExtResource("15_j6yve")
+shader_parameter/colour1 = Color(1, 0, 0, 1)
+shader_parameter/colour2 = Color(0, 0, 1, 1)
+shader_parameter/colour3 = Color(0, 0, 0, 1)
+shader_parameter/colour4 = Color(1, 1, 1, 1)
+shader_parameter/contrast = 5
+shader_parameter/gradual = 2.0
+shader_parameter/width1 = 0.04
+shader_parameter/width2 = 0.1
+shader_parameter/scale1 = 10.0
+shader_parameter/scale2 = 1.0
+shader_parameter/offset = Vector2(0, 0)
+shader_parameter/intensity = 0.2
+shader_parameter/spin_speed = 0.2
+shader_parameter/spin_amount = 1.5
 
 [node name="LearnMain" type="Control"]
 layout_mode = 3
@@ -222,6 +240,16 @@ grow_vertical = 2
 [node name="11Curve" type="ColorRect" parent="."]
 visible = false
 material = SubResource("ShaderMaterial_ta0o4")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+visible = false
+material = SubResource("ShaderMaterial_hawpb")
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
