@@ -1,0 +1,20 @@
+[gd_scene load_steps=2 format=3 uid="uid://bxhsdig0xpamr"]
+
+[ext_resource type="Texture2D" uid="uid://b7wfd67wc6od8" path="res://icon.svg" id="1_uckhi"]
+
+[node name="SekletonLearn" type="Node2D"]
+
+[node name="Skeleton2D" type="Skeleton2D" parent="."]
+
+[node name="Bone2D" type="Bone2D" parent="Skeleton2D"]
+position = Vector2(526, 599)
+rest = Transform2D(1, 0, 0, 1, 526, 599)
+
+[node name="Bone2D" type="Bone2D" parent="Skeleton2D/Bone2D"]
+position = Vector2(-162, -331)
+rest = Transform2D(1, 0, 0, 1, -171, -313)
+editor_settings/show_bone_gizmo = false
+
+[node name="Icon" type="Sprite2D" parent="Skeleton2D/Bone2D/Bone2D"]
+position = Vector2(8, 7)
+texture = ExtResource("1_uckhi")
