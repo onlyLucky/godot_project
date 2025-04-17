@@ -49,6 +49,8 @@ func transition_to(state_name: String, msg: Dictionary = {}):
 	if has_state(state_name):
 		var state: StateBase = get_state(state_name)
 		if state:
-			current_state.exit()
+			if current_state.has_method('exit'):
+				current_state.exit()
 			current_state = state
-			current_state.enter(msg)
+			if current_state.has_method('enter'):
+				current_state.enter(msg)

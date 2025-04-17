@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://br5b0a4crivwv"]
+[gd_scene load_steps=5 format=3 uid="uid://br5b0a4crivwv"]
 
 [ext_resource type="Script" path="res://FSM/state_machine.gd" id="1_dhtj3"]
 [ext_resource type="Script" path="res://FSM/state_1_eat.gd" id="2_tbufe"]
 [ext_resource type="Script" path="res://FSM/state_2_sleep.gd" id="3_p7jld"]
+[ext_resource type="Script" path="res://FSM/state_3_work.gd" id="4_c3ivn"]
 
 [node name="FSM" type="Node"]
 script = ExtResource("1_dhtj3")
@@ -15,3 +16,4 @@ script = ExtResource("2_tbufe")
 script = ExtResource("3_p7jld")
 
 [node name="state_3_work" type="Node" parent="."]
+script = ExtResource("4_c3ivn")
