@@ -1,6 +1,18 @@
-[gd_scene load_steps=2 format=3 uid="uid://card8rbda84ti"]
+[gd_scene load_steps=5 format=3 uid="uid://card8rbda84ti"]
 
 [ext_resource type="Script" path="res://BT/behavior_tree.gd" id="1_a0pm4"]
+[ext_resource type="Script" path="res://BT/BTSelector.gd" id="2_mvqsl"]
+[ext_resource type="Script" path="res://BT/bt_eat.gd" id="3_gv15n"]
+[ext_resource type="Script" path="res://BT/bt_sleep.gd" id="4_vno1w"]
 
 [node name="BehaviorTree" type="Node"]
 script = ExtResource("1_a0pm4")
+
+[node name="BTSelector" type="Node" parent="."]
+script = ExtResource("2_mvqsl")
+
+[node name="BTEat" type="Node" parent="BTSelector"]
+script = ExtResource("3_gv15n")
+
+[node name="BTSleep" type="Node" parent="BTSelector"]
+script = ExtResource("4_vno1w")
